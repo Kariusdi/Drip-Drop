@@ -37,6 +37,7 @@ const RegisterPage = () => {
         <div className="space-y-2">
           <input
             type="tel"
+            maxLength={10}
             value={phone}
             onChange={handlePhoneChange}
             placeholder="ตัวอย่าง: 089xxxxxx"
