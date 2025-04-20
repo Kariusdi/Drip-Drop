@@ -19,7 +19,7 @@ export default function RootLayout({
       <body
         className={`${noto_sans.className} antialiased flex justify-center items-center h-dvh w-full bg-orange-50 text-center`}
       >
-        <main className="h-full w-xl flex justify-center items-center overflow-hidden p-2 border-2">
+        <main className="h-full w-full flex justify-center items-center overflow-hidden p-2 relative">
           {children}
         </main>
       </body>

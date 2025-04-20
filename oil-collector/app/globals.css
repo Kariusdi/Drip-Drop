@@ -6,27 +6,45 @@
   --color-secondary: #b1c122;
   --color-secondary-light: #d6df24;
 }
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+.indicator {
+  height: 100dvh;
+  width: 100dvh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --offset: 0vh;
+  --height: 50%; /* default fill value */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+output {
+  z-index: 1;
+  font-family: system-ui;
+  font-size: 10vw; /* scaled for full screen */
+  color: #333;
+  position: relative;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Animated water blob */
+.indicator::after {
+  content: "";
+  display: block;
+  width: 200vw;
+  height: 200vw;
+  background-color: #b1c122;
+  opacity: 70%;
+  border-radius: 90vw;
+  position: absolute;
+  left: 50%;
+  top: calc(100% - var(--height) + var(--offset));
+  translate: -50% 0%;
+  animation: spin 30s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    rotate: 300deg;
   }
 }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */
