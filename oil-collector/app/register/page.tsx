@@ -49,7 +49,7 @@ const RegisterPage = () => {
 
         <button
           type="submit"
-          className="bg-secondary text-white py-4 text-3xl active:bg-secondary-light w-full rounded-full"
+          className="bg-primary text-white py-4 text-3xl active:bg-primary-light w-full rounded-full"
         >
           เสร็จสิ้น
         </button>

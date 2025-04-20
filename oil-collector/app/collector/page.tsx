@@ -66,7 +66,7 @@ const CollectorPage = () => {
               <AppWaterWave value={oilVal} />
               <button
                 onClick={handleFinished}
-                className="absolute bottom-5 right-5 px-10 py-5 rounded-full text-2xl z-10 bg-amber-950 active:bg-amber-700 text-white"
+                className="absolute bottom-5 right-5 px-10 py-5 rounded-full text-2xl z-10 bg-primary active:bg-primary-light text-white"
               >
                 เสร็จสิ้น
               </button>
