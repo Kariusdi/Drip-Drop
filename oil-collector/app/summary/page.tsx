@@ -9,7 +9,7 @@ const SummaryPage = () => {
     router.push("/done");
   };
   return (
-    <section className="bg-white w-3/4 h-3/4 rounded-2xl shadow-xl flex flex-col justify-around items-center border border-secondary-light">
+    <section className="bg-white w-3/4 h-3/4 rounded-2xl shadow-md shadow-secondary-light flex flex-col justify-around items-center">
       <div className="w-1/2 space-y-2">
         <h1 className="text-5xl font-bold">สรุปรายการ</h1>
         <hr />
