@@ -2,19 +2,24 @@ import { connectDB } from "@/controllers/mongodb";
 import UserPoint from "@/models/userpoint";
 import { NextRequest, NextResponse } from "next/server";
 
-interface BodyStructure {
+interface UserPhoneStructure {
   phone: string;
+}
+
+interface UserPointStructure {
+  phone: string;
+  points: number;
 }
 
 export const GET = async (request: NextRequest) => {
   const phone = request.nextUrl.searchParams.get("phone");
 
   try {
-    const user_data = await UserPoint.findOne({ phone });
+    const userData = await UserPoint.findOne({ phone });
     return NextResponse.json(
       {
         message: "Get a user successfully",
-        data: { phone: user_data.phone, points: user_data.points },
+        data: { phone: userData.phone, points: userData.points },
       },
       { status: 200 }
     );
@@ -31,7 +36,7 @@ export const GET = async (request: NextRequest) => {
 export const POST = async (request: NextRequest) => {
   await connectDB();
 
-  const body: BodyStructure = await request.json();
+  const body: UserPhoneStructure = await request.json();
 
   const newUser = new UserPoint({
     phone: body.phone,
@@ -51,6 +56,33 @@ export const POST = async (request: NextRequest) => {
     return NextResponse.json(
       {
         message: "Error creating a new user",
+      },
+      { status: 500 }
+    );
+  }
+};
+
+export const PUT = async (request: NextRequest) => {
+  await connectDB();
+
+  const body: UserPointStructure = await request.json();
+
+  try {
+    const updatedUser = await UserPoint.findOneAndUpdate(
+      { phone: body.phone },
+      { $set: { points: body.points } }
+    );
+    return NextResponse.json(
+      {
+        message: "Updated a user successfully",
+        data: updatedUser,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      {
+        message: "Error updating a new user",
       },
       { status: 500 }
     );
