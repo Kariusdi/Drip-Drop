@@ -24,6 +24,7 @@ export const GET = async (request: NextRequest) => {
       { status: 200 }
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       {
         message: "Error getting a user",
@@ -53,6 +54,7 @@ export const POST = async (request: NextRequest) => {
       { status: 200 }
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       {
         message: "Error creating a new user",
@@ -80,6 +82,7 @@ export const PUT = async (request: NextRequest) => {
       { status: 200 }
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       {
         message: "Error updating a new user",

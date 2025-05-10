@@ -12,14 +12,32 @@ const RegisterPage = () => {
     setPhone(e.target.value);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const validationError = validatePhone(phone);
-    if (validationError) {
-      console.log(phone);
-    } else {
-      console.log(phone);
-      router.push("/summary");
+    if (!validationError) {
+      const createUser_url = "/api/db";
+      const getUser_url = `/api/db?phone=${phone}`;
+      try {
+        await fetch(createUser_url, {
+          method: "POST",
+          body: JSON.stringify({ phone: phone }),
+        })
+          .then(async () => {
+            const getUserPoist_res = await fetch(getUser_url, {
+              method: "GET",
+            });
+            const json = await getUserPoist_res.json();
+            localStorage.setItem("userPoints", String(json.data.points));
+          })
+          .catch(() => {
+            localStorage.setItem("userPoints", "0");
+          });
+        localStorage.setItem("phone", phone);
+        router.push("/summary");
+      } catch (error) {
+        console.log(error);
+      }
     }
     // Even its not error the function returns ""
     setError(validationError);

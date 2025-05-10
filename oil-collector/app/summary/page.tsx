@@ -1,13 +1,40 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 const SummaryPage = () => {
   const router = useRouter();
+  const [oilVal, setOilVal] = useState<number>(
+    Number(localStorage.getItem("oilVal") || 0)
+  );
+  const [points, setPoints] = useState<number>(
+    Number(localStorage.getItem("points") || 0)
+  );
+  const [userPoints, setUserPoints] = useState<number>(
+    Number(localStorage.getItem("userPoints") || 0)
+  );
 
-  const handleFinished = () => {
-    router.push("/done");
-  };
+  const handleFinished = useCallback(async () => {
+    const url = "/api/db";
+    try {
+      await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify({
+          phone: localStorage.getItem("phone"),
+          points: (points + userPoints).toFixed(1),
+        }),
+      }).then(() => {
+        localStorage.removeItem("oilVal");
+        localStorage.removeItem("points");
+        localStorage.removeItem("userPoints");
+        localStorage.removeItem("phone");
+        router.push("/done");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [points, userPoints]);
+
   return (
     <section className="bg-white w-3/4 h-3/4 rounded-2xl shadow-md shadow-secondary-light flex flex-col justify-around items-center">
       <div className="w-1/2 space-y-2">
@@ -18,17 +45,20 @@ const SummaryPage = () => {
         <div className="w-full">
           <div className="w-full flex justify-between items-center p-10 text-3xl">
             <p>น้ำมันที่ขายได้</p>
-            <p>56 มล.</p>
+            <p>{oilVal} มล.</p>
           </div>
           <div className="w-full flex justify-between items-center p-10 text-3xl">
             <p>แต้มที่ได้</p>
-            <p>5.6 แต้ม</p>
+            <p>{points} แต้ม</p>
           </div>
         </div>
         <div className="w-full flex justify-between items-end p-10 text-3xl bg-secondary text-white">
           <p>แต้มสะสมปัจจุบัน</p>
           <p>
-            <span className="font-extrabold text-6xl">90</span> แต้ม
+            <span className="font-extrabold text-6xl">
+              {(userPoints + points).toFixed(1)}
+            </span>{" "}
+            แต้ม
           </p>
         </div>
       </div>

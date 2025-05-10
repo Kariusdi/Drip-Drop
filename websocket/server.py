@@ -7,7 +7,8 @@ connected_clients = set()
 async def broadcast_numbers():
     while True:
         if connected_clients:
-            upper_limit = random.randint(0, 10)
+            await asyncio.sleep(3)
+            upper_limit = random.randint(0, 100)
             print(f"Broadcasting numbers 0 to {upper_limit} to all clients...")
             for number in range(upper_limit + 1):
                 message = str(number)
@@ -16,11 +17,11 @@ async def broadcast_numbers():
                     *[client.send(message) for client in connected_clients if client.open],
                     return_exceptions=True  # avoids cancellation due to one failing client
                 )
-                print(f"Sent: {message}")
+                # print(f"Sent: {message}")
                 await asyncio.sleep(0.2)  # simulate delay per number
                 if not connected_clients:
                     break
-            await asyncio.sleep(3)
+            await asyncio.sleep(10)
         else:
             await asyncio.sleep(1)
 

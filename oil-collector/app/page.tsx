@@ -19,7 +19,7 @@ export default function Home() {
       </div>
       <Link
         className="space-y-5 bg-primary text-white px-16 py-5 rounded-full cursor-pointer active:bg-primary-light"
-        href={"/collector"}
+        href={"/instruction"}
       >
         <p className="text-3xl font-light">กดที่หน้าจอเพื่อ</p>
         <p className="text-5xl font-extrabold">เริ่มต้น</p>
