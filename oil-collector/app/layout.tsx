@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
 import "./globals.css";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 
 const noto_sans = Noto_Sans({ subsets: ["latin"] });
 
@@ -9,18 +11,22 @@ export const metadata: Metadata = {
   description: "For oil collector prototype only",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const messages = await getMessages();
+  const locale = await getLocale();
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${noto_sans.className} antialiased flex justify-center items-center h-dvh w-full bg-orange-50 text-center`}
       >
-        <main className="h-full w-4xl flex justify-center items-center overflow-hidden p-2 relative">
-          {children}
+        <main className="h-full w-dvh flex justify-center items-center overflow-hidden p-2 relative bg-gradient-to-b from-primary-light from-45% to-primary">
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
         </main>
       </body>
     </html>

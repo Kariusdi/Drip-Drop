@@ -1,0 +1,13 @@
+{
+  "WelcomePage": {
+    "title": "Oil collector",
+    "greeting": "Welcome",
+    "instruction": "Please select a menu",
+    "menu1": "Sell oil",
+    "menu2": "Check sales",
+    "menu3": "Check points",
+    "tab": "Tap to continue",
+    "report": "Report a problem",
+    "contact": "Contact officer"
+  }
+}

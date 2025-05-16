@@ -12,6 +12,7 @@ interface UserPointStructure {
 }
 
 export const GET = async (request: NextRequest) => {
+  await connectDB();
   const phone = request.nextUrl.searchParams.get("phone");
 
   try {

@@ -1,10 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #406987;
-  --color-primary-light: #4e83ab;
-  --color-secondary: #b1c122;
-  --color-secondary-light: #d6df24;
+  --color-primary: #f6da91;
+  --color-primary-light: #fef4d4;
+  --color-secondary: #a36151;
+  --color-secondary-light: #c67763;
+  --color-tertiary: #000000;
+
+  --text-h1: 3.75rem;
+  --text-h2: 3rem;
+  --text-h3: 2.25rem;
+  --text-h4: 1.875rem;
 }
 
 .indicator {
