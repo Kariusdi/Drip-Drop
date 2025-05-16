@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
+import { Kanit } from "next/font/google";
 import "./globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 
-const noto_sans = Noto_Sans({ subsets: ["latin"] });
+const kanit = Kanit({
+  subsets: ["latin", "latin-ext", "thai"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-kanit",
+});
 
 export const metadata: Metadata = {
   title: "Oil Collector",
@@ -21,7 +25,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${noto_sans.className} antialiased flex justify-center items-center h-dvh w-full bg-orange-50 text-center`}
+        className={`${kanit.className} antialiased flex justify-center items-center h-dvh w-full bg-orange-50 text-center`}
       >
         <main className="h-full w-dvh flex justify-center items-center overflow-hidden p-2 relative bg-gradient-to-b from-primary-light from-45% to-primary">
           <NextIntlClientProvider messages={messages}>
