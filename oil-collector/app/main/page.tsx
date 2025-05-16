@@ -44,17 +44,17 @@ const InstructionPage = () => {
       {
         name: t("menu1"),
         image: Money,
-        endpoint: "/collector",
+        endpoint: "collector",
       },
       {
         name: t("menu2"),
         image: Piggy,
-        endpoint: "/summary",
+        endpoint: "sales",
       },
       {
         name: t("menu3"),
         image: Plant,
-        endpoint: "/points",
+        endpoint: "credits",
       },
     ];
   }, [locale, t]);
@@ -65,7 +65,7 @@ const InstructionPage = () => {
         <section className="relative flex flex-col justify-center items-center w-full h-full space-y-20">
           <div className="space-y-5 flex flex-col justify-center items-center">
             <h3 className="text-h3 text-secondary">{t("title")}</h3>
-            <h2 className="text-h2 font-bold text-secondary">
+            <h2 className="text-h2 text-secondary font-medium">
               {t("greeting")}
             </h2>
             <div
@@ -81,13 +81,15 @@ const InstructionPage = () => {
                 placeholder="empty"
                 priority
               />
-              <p className="font-medium">
+              <p className="font-medium text-h4">
                 Change to {locale === "th" ? "English" : "Thai"}
               </p>
             </div>
           </div>
           <div className="space-y-5 w-full">
-            <h1 className="text-h1 text-tertiary">{t("instruction")}</h1>
+            <h1 className="text-h1 text-tertiary font-bold">
+              {t("instruction")}
+            </h1>
             <div className="flex justify-evenly items-center w-full">
               {menus.map((menu, index) => (
                 <div
@@ -96,13 +98,13 @@ const InstructionPage = () => {
                     setSelectedMenu(menu.endpoint);
                   }}
                   key={index}
-                  className={`h-56 w-56 flex flex-col justify-center items-center rounded-full shadow-[0px_0px_30px_rgba(0,0,0,0.1)] shadow-primary ${
+                  className={`h-56 w-56 p-2 flex flex-col justify-center items-center rounded-full shadow-[0px_0px_30px_rgba(0,0,0,0.1)] shadow-primary ${
                     selectedMenu === menu.endpoint
                       ? "bg-primary text-white"
                       : "bg-white"
                   } text-tertiary space-y-2`}
                 >
-                  <p className="font-medium text-[28px]">{menu.name}</p>
+                  <p className="font-medium text-h4">{menu.name}</p>
                   <Image
                     src={menu.image}
                     alt="menu"
@@ -117,7 +119,7 @@ const InstructionPage = () => {
             </div>
           </div>
           <h4
-            onClick={() => router.push(selectedMenu)}
+            onClick={() => router.push(`/register?from=${selectedMenu}`)}
             className={`text-h4 text-tertiary animate-bounce w-full ${
               selectedMenu ? "opacity-100" : "opacity-0"
             }`}

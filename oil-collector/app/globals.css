@@ -39,7 +39,7 @@ output {
   display: block;
   width: 200vw;
   height: 200vw;
-  background-color: #b1c122;
+  background-color: #a36151;
   opacity: 70%;
   border-radius: 90vw;
   position: absolute;
@@ -52,5 +52,66 @@ output {
 @keyframes spin {
   100% {
     rotate: 300deg;
+  }
+}
+/* HTML: <div class="loader"></div> */
+.loader {
+  display: inline-flex;
+  gap: 50px;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  height: 120px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, #000 95%, #0000) 35% 35%/60px 60px
+    no-repeat #fff;
+  animation: l5 3s infinite;
+}
+@keyframes l5 {
+  0%,
+  11% {
+    background-position: 35% 35%;
+  }
+  14%,
+  36% {
+    background-position: 65% 35%;
+  }
+  38%,
+  61% {
+    background-position: 65% 65%;
+  }
+  64%,
+  86% {
+    background-position: 35% 65%;
+  }
+  88%,
+  100% {
+    background-position: 35% 35%;
+  }
+}
+
+/* HTML: <div class="loader"></div> */
+.loader-dot {
+  width: 60px;
+  aspect-ratio: 2;
+  --_g: no-repeat radial-gradient(circle closest-side, #000 90%, #0000);
+  background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+  background-size: calc(100% / 3) 50%;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+  20% {
+    background-position: 0% 0%, 50% 50%, 100% 50%;
+  }
+  40% {
+    background-position: 0% 100%, 50% 0%, 100% 50%;
+  }
+  60% {
+    background-position: 0% 50%, 50% 100%, 100% 0%;
+  }
+  80% {
+    background-position: 0% 50%, 50% 50%, 100% 100%;
   }
 }

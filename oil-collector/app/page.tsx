@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 export default function Home() {
   const t = useTranslations("LandingPage");
   return (
-    <Link href={"/instruction"} className="w-full h-full">
+    <Link href={"/main"} className="w-full h-full">
       <section className="h-full w-full flex flex-col justify-center items-center space-y-20">
         <Image
           src={Logo}
