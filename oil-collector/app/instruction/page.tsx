@@ -54,7 +54,7 @@ const InstructionPage = () => {
       {
         name: t("menu3"),
         image: Plant,
-        endpoint: "/summary",
+        endpoint: "/points",
       },
     ];
   }, [locale, t]);

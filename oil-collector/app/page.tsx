@@ -1,29 +1,24 @@
 import Image from "next/image";
-import Logo from "@/assets/logo.png";
+import Logo from "@/assets/drop.png";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
+  const t = useTranslations("LandingPage");
   return (
-    <section className="h-full flex flex-col justify-center items-center space-y-20">
-      <div className="flex flex-col justify-center items-center space-y-8">
+    <Link href={"/instruction"} className="w-full h-full">
+      <section className="h-full w-full flex flex-col justify-center items-center space-y-20">
         <Image
           src={Logo}
           alt="logo"
-          width={300}
-          height={300}
+          width={600}
+          height={600}
           quality={100}
           placeholder="empty"
           priority
         />
-        <h1 className="text-5xl font-bold">เครื่องรับซื้อน้ำมันพืชใช้แล้ว</h1>
-      </div>
-      <Link
-        className="space-y-5 bg-primary text-white px-16 py-5 rounded-full cursor-pointer active:bg-primary-light"
-        href={"/instruction"}
-      >
-        <p className="text-3xl font-light">กดที่หน้าจอเพื่อ</p>
-        <p className="text-5xl font-extrabold">เริ่มต้น</p>
-      </Link>
-    </section>
+        <h2 className="text-h2 animate-bounce">{t("tab")}</h2>
+      </section>
+    </Link>
   );
 }

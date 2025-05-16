@@ -1,4 +1,7 @@
 {
+  "LandingPage": {
+    "tab": "Tap to continue"
+  },
   "WelcomePage": {
     "title": "Oil collector",
     "greeting": "Welcome",
