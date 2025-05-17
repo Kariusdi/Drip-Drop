@@ -21,7 +21,9 @@ const RegisterPage = () => {
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const validationError = validatePhone(phone);
+
       if (!validationError) {
+        localStorage.setItem("phone", phone);
         const createUser_url = "/api/credit";
         const getUser_url = `/api/credit?phone=${phone}`;
         try {
@@ -41,7 +43,7 @@ const RegisterPage = () => {
               .catch(() => {
                 localStorage.setItem("userCredits", "0");
               });
-            localStorage.setItem("phone", phone);
+
             router.push("/collector");
           } else if (fromPage === "sales") {
             router.push("/sales");

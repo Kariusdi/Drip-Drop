@@ -55,7 +55,9 @@
   },
   "SalesPage": {
     "title": "Sales history Table",
-    "subtitle": "Phone number:"
+    "subtitle": "Phone number:",
+    "noPoint": "You don't have any sales history",
+    "suggesstion": "You can earn sales history by selecting a reward as cash"
   },
   "TableComponent": {
     "column1": "Sale Date",
@@ -64,10 +66,18 @@
     "column4": "Proceeds (THB)"
   },
   "CreditPage": {
-    "title": "Your accumulated points",
-    "point": "Points"
+    "title": "Your accumulated credits",
+    "point": "Credits",
+    "noPoint": "You don't have any accumulated credits",
+    "suggesstion": "You can earn accumulated credits by selecting a reward as credit"
   },
   "Back": {
     "label": "Back"
+  },
+  "DonePage": {
+    "thanks": "Thank you for using our service",
+    "reward": "You have received a reward",
+    "cashUnit": "THB",
+    "creditUnit": "Credits"
   }
 }
