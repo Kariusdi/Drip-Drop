@@ -126,7 +126,7 @@ const InstructionPage = () => {
           >
             {t("tab")}
           </h4>
-          <div className="absolute bottom-0 flex justify-between items-center w-full text-2xl p-5">
+          <div className="absolute bottom-0 flex justify-between items-center w-full text-2xl p-5 text-secondary-light">
             <p>{t("report")}</p>
             <p>{t("contact")}</p>
           </div>

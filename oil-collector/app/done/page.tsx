@@ -29,7 +29,7 @@ const DonePage = () => {
       localStorage.removeItem("userCredits");
       localStorage.removeItem("phone");
       router.push("/main");
-    }, 5000);
+    }, 3500);
   }, []);
 
   return (

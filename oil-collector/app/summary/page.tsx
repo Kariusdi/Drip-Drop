@@ -128,6 +128,11 @@ const SummaryPage = () => {
             phone,
             credits: (points + userCredits).toFixed(1),
           }),
+        }).then(() => {
+          localStorage.setItem(
+            "userCredits",
+            (points + userCredits).toFixed(1)
+          );
         });
       } catch (error) {
         console.error(error);
