@@ -54,7 +54,7 @@ const SummaryPage = () => {
     //   console.log(error);
     // }
     router.push(`/done?status=approved&reward=${selectedReward}`);
-  }, []);
+  }, [selectedReward]);
   return (
     <>
       {/* Approved Pop-up point selection */}

@@ -1,7 +1,8 @@
 "use client";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { validatePhone } from "../utils/phone";
+import { validatePhone } from "@/app/utils/phone";
 import { useRouter, useSearchParams } from "next/navigation";
+import AppBackArrow from "../_components/AppBackArrow";
 
 const RegisterPage = () => {
   const [phone, setPhone] = useState<string>("");
@@ -52,36 +53,39 @@ const RegisterPage = () => {
     setError(validationError);
   };
   return (
-    <section className="w-full p-10 space-y-28">
-      <div className="text-5xl font-bold space-y-5">
-        <h1>โปรดกรอกเบอร์โทรศัพท์</h1>
-        <h2>เพื่อสะสมแต้ม</h2>
-      </div>
-      <form
-        onSubmit={handleSubmit}
-        className="p-4 w-full h-[250px] flex flex-col justify-between items-stretch"
-      >
-        <div className="space-y-2">
-          <input
-            type="tel"
-            maxLength={10}
-            value={phone}
-            onChange={handlePhoneChange}
-            placeholder="ตัวอย่าง: 089xxxxxx"
-            className="mt-1 h-auto w-full p-4 border bg-white border-primary rounded-lg focus:border-secondary outline-0 text-2xl shadow-lg"
-          />
-          {error && (
-            <p className="text-red-500 mt-1 text-xl text-start">{error}</p>
-          )}
+    <>
+      <AppBackArrow />
+      <section className="w-full p-10 space-y-28">
+        <div className="text-5xl font-bold space-y-5">
+          <h1>โปรดกรอกเบอร์โทรศัพท์</h1>
+          <h2>เพื่อสะสมแต้ม</h2>
         </div>
-        <button
-          type="submit"
-          className="bg-secondary text-white py-4 text-3xl active:bg-secondary w-full rounded-full"
+        <form
+          onSubmit={handleSubmit}
+          className="p-4 w-full h-[250px] flex flex-col justify-between items-stretch"
         >
-          เสร็จสิ้น
-        </button>
-      </form>
-    </section>
+          <div className="space-y-2">
+            <input
+              type="tel"
+              maxLength={10}
+              value={phone}
+              onChange={handlePhoneChange}
+              placeholder="ตัวอย่าง: 089xxxxxx"
+              className="mt-1 h-auto w-full p-4 border bg-white border-primary rounded-lg focus:border-secondary outline-0 text-2xl shadow-lg"
+            />
+            {error && (
+              <p className="text-red-500 mt-1 text-xl text-start">{error}</p>
+            )}
+          </div>
+          <button
+            type="submit"
+            className="bg-secondary text-white py-4 text-3xl active:bg-secondary w-full rounded-full"
+          >
+            เสร็จสิ้น
+          </button>
+        </form>
+      </section>
+    </>
   );
 };
 

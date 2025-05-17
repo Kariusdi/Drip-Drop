@@ -1,7 +1,7 @@
 import React from "react";
 import AppTable from "../_components/AppTable";
-import Image from "next/image";
-import Logo from "@/assets/drop.png";
+import AppBackArrow from "../_components/AppBackArrow";
+
 const rows = [
   { id: 1, saleDate: "2023-10-01", quantities: 100, proceeds: 500 },
   { id: 2, saleDate: "2023-10-02", quantities: 150, proceeds: 750 },
@@ -18,28 +18,18 @@ const rows = [
 
 const SalesPage = () => {
   return (
-    <div className="relative w-full h-full p-5 flex flex-col justify-center items-center space-y-10">
-      <div className="absolute top-2 flex justify-between items-center w-full px-2">
-        <div className="rounded-full p-5 bg-white shadow-[0px_0px_30px_rgba(0,0,0,0.1)] shadow-primary">
-          <Image
-            src={Logo}
-            alt="logo"
-            width={50}
-            height={50}
-            quality={100}
-            placeholder="empty"
-            priority
-          />
-        </div>
-        <p className="text-xl">
-          <span>เบอร์โทร: </span>095-573-9706
-        </p>
-      </div>
-      <h3 className="text-h3 font-medium text-secondary">
-        ตารางแสดงประวัติยอดขาย
-      </h3>
-      <AppTable dataSource={rows} />
-    </div>
+    <>
+      <AppBackArrow />
+      <section className="relative w-full h-full p-5 flex flex-col justify-center items-center space-y-10">
+        <h3 className="text-h3 font-medium text-secondary">
+          ตารางแสดงประวัติยอดขาย
+          <p className="text-2xl">
+            <span>เบอร์โทร: </span>095-573-9706
+          </p>
+        </h3>
+        <AppTable dataSource={rows} />
+      </section>
+    </>
   );
 };
 

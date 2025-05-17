@@ -14,7 +14,7 @@ const DonePage = () => {
   return (
     <>
       {status === "approved" ? (
-        <></>
+        <section>Show Point</section>
       ) : (
         <section className="text-6xl font-bold space-y-10">
           <h1>🙏🏻</h1>
