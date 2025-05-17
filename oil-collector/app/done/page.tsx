@@ -6,15 +6,27 @@ const DonePage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const status = searchParams.get("status");
+  const reward = searchParams.get("reward");
   useEffect(() => {
     setTimeout(() => {
-      router.push("/");
+      router.push("/main");
     }, 2000);
   }, []);
+
+  // localStorage.removeItem("oilVal");
+  // localStorage.removeItem("points");
+  // localStorage.removeItem("userCredits");
+  // localStorage.removeItem("phone");
   return (
     <>
       {status === "approved" ? (
-        <section>Show Point</section>
+        <>
+          {reward === "credit" ? (
+            <section>Show Credit</section>
+          ) : (
+            <section className="">Show Cash</section>
+          )}
+        </>
       ) : (
         <section className="text-6xl font-bold space-y-10">
           <h1>🙏🏻</h1>

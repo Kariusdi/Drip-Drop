@@ -12,5 +12,62 @@
     "tab": "Tap to continue",
     "report": "Report a problem",
     "contact": "Contact officer"
+  },
+  "RegisterPage": {
+    "title": "Enter your phone number",
+    "subtitle": "to start using the service",
+    "phonePlaceholder": "Example: 089xxxxxx",
+    "phoneError1": "Please enter your phone number",
+    "phoneError2": "Please enter your phone number correctly",
+    "submit": "Submit"
+  },
+  "CollectorPage": {
+    "title": "Volume of sales",
+    "unit": "ml.",
+    "instruction": "Please pour oil into the container below",
+    "submit": "Submit"
+  },
+  "InspectPage": {
+    "title": "Checking the quality of oil",
+    "wait": "Please wait a moment"
+  },
+  "SummaryPage": {
+    "rewardTitle": "Please choose a reward",
+    "reward1": "Cash",
+    "reward2": "Credit",
+
+    "title": "Summary",
+    "row1": "Oil quality",
+    "row2": "Volume of oil",
+    "row3": "Price per liter",
+    "row4": "Total price",
+    "row5": "Total credit",
+    "approved": "Approved",
+    "denied": "Denied",
+    "unit": "THB/liter",
+    "liter": "Litre",
+    "bath": "THB",
+    "credit": "Credit",
+    "submit": "Submit",
+    "deniedPhase1": "Please pick up the oil at",
+    "deniedPhase2": "the side channel",
+    "deniedPhase3": "of the machine"
+  },
+  "SalesPage": {
+    "title": "Sales history Table",
+    "subtitle": "Phone number:"
+  },
+  "TableComponent": {
+    "column1": "Sale Date",
+    "column2": "Quantities (Litre)",
+    "column3": "Price per liter (THB)",
+    "column4": "Proceeds (THB)"
+  },
+  "CreditPage": {
+    "title": "Your accumulated points",
+    "point": "Points"
+  },
+  "Back": {
+    "label": "Back"
   }
 }

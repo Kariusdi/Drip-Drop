@@ -1,11 +1,11 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-interface UserPoint extends Document {
+interface UserCredit extends Document {
   phone: string;
-  points: number;
+  credits: number;
 }
 
-const userSchema = new Schema<UserPoint>(
+const userCreditSchema = new Schema<UserCredit>(
   {
     id: {
       type: String,
@@ -16,7 +16,7 @@ const userSchema = new Schema<UserPoint>(
       require: [true, "Email is required"],
       unique: true,
     },
-    points: {
+    credits: {
       type: Number,
       require: [true, "Password is required"],
     },
@@ -24,6 +24,6 @@ const userSchema = new Schema<UserPoint>(
   { timestamps: true }
 );
 
-const UserPoint =
-  mongoose.models.UserPoint || mongoose.model("UserPoint", userSchema);
-export default UserPoint;
+const UserCredit =
+  mongoose.models.UserCredit || mongoose.model("UserCredit", userCreditSchema);
+export default UserCredit;

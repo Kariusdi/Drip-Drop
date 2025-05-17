@@ -3,10 +3,12 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Arrow from "@/assets/arrow.png";
+import { useTranslations } from "next-intl";
 
 const CollectorPage = () => {
   const [oilVal, setOilVal] = useState<number>(0);
   const router = useRouter();
+  const t = useTranslations("CollectorPage");
 
   useEffect(() => {
     const socket = new WebSocket("ws://localhost:8765");
@@ -38,18 +40,18 @@ const CollectorPage = () => {
     <section>
       <div className="absolute top-1/2 left-1/2 -translate-1/2 z-10 rounded-full space-y-10 flex flex-col justify-center items-center">
         <h2 className={`text-h2 text-tertiary font-medium drop-shadow-2xl`}>
-          ปริมาณการขาย
+          {t("title")}
         </h2>
         <div className="bg-primary rounded-full h-[350px] w-[350px] flex flex-col justify-center items-center text-secondary shadow-2xl space-y-6">
           <div>
             <p className="text-9xl font-bold drop-shadow-2xl">
               {oilVal}
-              <span className="text-h3 font-medium ml-2">มล.</span>
+              <span className="text-h3 font-medium ml-2">{t("unit")}</span>
             </p>
           </div>
         </div>
         <div className="flex flex-col justify-center items-center space-y-5 opacity-80">
-          <h2 className="text-h4 text-tertiary">โปรดเทน้ำมันลงช่องด้านล่าง</h2>
+          <h2 className="text-h4 text-tertiary">{t("instruction")}</h2>
           <Image
             src={Arrow}
             alt={"arrow"}
@@ -69,7 +71,7 @@ const CollectorPage = () => {
             onClick={handleFinished}
             className="absolute bottom-5 right-5 px-10 py-5 rounded-full text-h4 z-10 bg-tertiary active:bg-secondary text-primary-light"
           >
-            เสร็จสิ้น
+            {t("submit")}
           </button>
         </>
       )}

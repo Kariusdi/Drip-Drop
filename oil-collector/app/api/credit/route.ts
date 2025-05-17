@@ -1,26 +1,35 @@
 import { connectDB } from "@/controllers/mongodb";
-import UserPoint from "@/models/userpoint";
+import UserCredit from "@/models/UserCredit";
 import { NextRequest, NextResponse } from "next/server";
 
 interface UserPhoneStructure {
   phone: string;
 }
 
-interface UserPointStructure {
+interface UserCreditStructure {
   phone: string;
-  points: number;
+  credits: number;
 }
 
 export const GET = async (request: NextRequest) => {
   await connectDB();
   const phone = request.nextUrl.searchParams.get("phone");
 
+  if (!phone) {
+    return NextResponse.json(
+      {
+        message: "Error getting a user",
+      },
+      { status: 500 }
+    );
+  }
+
   try {
-    const userData = await UserPoint.findOne({ phone });
+    const userData = await UserCredit.findOne({ phone });
     return NextResponse.json(
       {
         message: "Get a user successfully",
-        data: { phone: userData.phone, points: userData.points },
+        data: { phone: userData.phone, credits: userData.credits },
       },
       { status: 200 }
     );
@@ -40,9 +49,9 @@ export const POST = async (request: NextRequest) => {
 
   const body: UserPhoneStructure = await request.json();
 
-  const newUser = new UserPoint({
+  const newUser = new UserCredit({
     phone: body.phone,
-    points: 0,
+    credits: 0,
   });
 
   try {
@@ -68,12 +77,12 @@ export const POST = async (request: NextRequest) => {
 export const PUT = async (request: NextRequest) => {
   await connectDB();
 
-  const body: UserPointStructure = await request.json();
+  const body: UserCreditStructure = await request.json();
 
   try {
-    const updatedUser = await UserPoint.findOneAndUpdate(
+    const updatedUser = await UserCredit.findOneAndUpdate(
       { phone: body.phone },
-      { $set: { points: body.points } }
+      { $set: { credits: body.credits } }
     );
     return NextResponse.json(
       {
