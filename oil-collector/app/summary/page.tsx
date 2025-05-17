@@ -53,7 +53,7 @@ const SummaryPage = () => {
     // } catch (error) {
     //   console.log(error);
     // }
-    router.push("/done?status=approved");
+    router.push(`/done?status=approved&reward=${selectedReward}`);
   }, []);
   return (
     <>
@@ -99,7 +99,7 @@ const SummaryPage = () => {
       )}
 
       {/* Summary Result */}
-      <section className="bg-white w-[90%] h-[90%] rounded-4xl shadow-lg shadow-secondary-light flex flex-col justify-around items-center py-2">
+      <section className="bg-white w-[95%] h-[95%] rounded-4xl shadow-lg shadow-secondary-light flex flex-col justify-around items-center py-2">
         <div className="w-full flex flex-col justify-center items-center space-y-5">
           <Image
             src={status === "approved" ? Approved : Denied}
@@ -126,13 +126,13 @@ const SummaryPage = () => {
                 <p>ราคาต่อลิตร</p>
                 <p>24 บาท/ลิตร </p>
               </div>
-              <div className="w-full flex justify-between items-end p-10 text-h3 bg-secondary text-white">
+              <div className="w-full flex justify-between items-end px-10 py-5 text-h3 bg-secondary text-white">
                 <p>ราคารวม</p>
                 <p>
                   <span className="font-extrabold text-h1">100</span> บาท
                 </p>
               </div>
-              <div className="w-full flex justify-between items-end p-10 mt-2 text-h3 bg-secondary text-white">
+              <div className="w-full flex justify-between items-end px-10 py-5 mt-2 text-h3 bg-secondary text-white">
                 <p>เครดิตรวม</p>
                 <p>
                   <span className="font-extrabold text-h1">50</span> เครดิต

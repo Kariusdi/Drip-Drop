@@ -82,7 +82,7 @@ const InstructionPage = () => {
                 priority
               />
               <p className="font-medium text-h4">
-                Change to {locale === "th" ? "English" : "Thai"}
+                Change to {locale === "th" ? "En" : "Th"}
               </p>
             </div>
           </div>
