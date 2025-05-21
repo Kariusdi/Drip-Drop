@@ -9,7 +9,7 @@ const InspectPage = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      router.push("/summary?status=approved");
+      router.push("/summary?status=denied");
     }, 5000);
   });
 

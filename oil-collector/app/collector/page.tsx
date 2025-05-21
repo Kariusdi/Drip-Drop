@@ -33,7 +33,6 @@ const CollectorPage = () => {
   const handleFinished = useCallback(() => {
     router.push("/inspect");
     localStorage.setItem("oilVal", String(oilVal));
-    // localStorage.setItem("points", String(oilVal / 10));
   }, [oilVal]);
 
   return (

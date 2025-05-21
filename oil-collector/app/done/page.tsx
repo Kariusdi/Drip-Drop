@@ -28,7 +28,7 @@ const DonePage = () => {
       localStorage.removeItem("cash");
       localStorage.removeItem("userCredits");
       localStorage.removeItem("phone");
-      router.push("/main");
+      router.push("/");
     }, 3500);
   }, []);
 

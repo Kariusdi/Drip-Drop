@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 
 const CreditsPage = () => {
   const t = useTranslations("CreditPage");
-  const [credits, setCredits] = useState<number>(0);
+  const [credits, setCredits] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,24 +24,32 @@ const CreditsPage = () => {
 
   return (
     <>
-      <AppBackArrow />
-      <section className="flex flex-col items-center justify-center h-full w-full space-y-10 p-10">
-        {credits === 0 ? (
-          <>
-            {" "}
-            <h1 className="text-h1 font-bold text-tertiary">{t("noPoint")}</h1>
-            <h3 className="text-h3 text-secondary">{t("suggesstion")}</h3>
-          </>
-        ) : (
-          <>
-            <h1 className="text-h1 font-bold">{t("title")}</h1>
-            <div className="bg-primary rounded-full p-20 text-center text-secondary shadow-2xl">
-              <p className="text-9xl font-bold drop-shadow-2xl">{credits}</p>
-              <p className="text-h1 font-medium ml-2">{t("point")}</p>
-            </div>
-          </>
-        )}
-      </section>
+      {credits && (
+        <>
+          <AppBackArrow />
+          <section className="flex flex-col items-center justify-center h-full w-full space-y-10 p-10">
+            {credits === 0 ? (
+              <>
+                {" "}
+                <h1 className="text-h1 font-bold text-tertiary">
+                  {t("noPoint")}
+                </h1>
+                <h3 className="text-h3 text-secondary">{t("suggesstion")}</h3>
+              </>
+            ) : (
+              <>
+                <h1 className="text-h1 font-bold">{t("title")}</h1>
+                <div className="bg-primary rounded-full p-20 text-center text-secondary shadow-2xl">
+                  <p className="text-9xl font-bold drop-shadow-2xl">
+                    {credits}
+                  </p>
+                  <p className="text-h1 font-medium ml-2">{t("point")}</p>
+                </div>
+              </>
+            )}
+          </section>
+        </>
+      )}
     </>
   );
 };

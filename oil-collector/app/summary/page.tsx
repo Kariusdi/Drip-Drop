@@ -129,10 +129,7 @@ const SummaryPage = () => {
             credits: (points + userCredits).toFixed(1),
           }),
         }).then(() => {
-          localStorage.setItem(
-            "userCredits",
-            (points + userCredits).toFixed(1)
-          );
+          localStorage.setItem("userCredits", String(points));
         });
       } catch (error) {
         console.error(error);
@@ -232,11 +229,11 @@ const SummaryPage = () => {
             </>
           ) : (
             <p className="p-8 text-h2 text-red-500 text-center">
-              โปรดรับน้ำมันคืนที่ <br />
+              {t("deniedPhase1")} <br />
               <span className="font-bold text-h1 text-red-600 drop-shadow-lg">
-                ช่องด้านข้าง
+                {t("deniedPhase2")}
               </span>{" "}
-              ของเครื่อง
+              {t("deniedPhase3")}
             </p>
           )}
         </div>
