@@ -35,8 +35,8 @@ async def handler(websocket):
         print(f"Client disconnected: {websocket.remote_address}")
 
 async def main():
-    server = await websockets.serve(handler, "localhost", 8765)
-    print("WebSocket server is running on ws://localhost:8765")
+    server = await websockets.serve(handler, "0.0.0.0", 8765)
+    print("WebSocket server is running on ws://0.0.0.0:8765")
     await broadcast_numbers()  # start broadcasting loop
 
 if __name__ == "__main__":

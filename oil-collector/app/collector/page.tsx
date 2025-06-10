@@ -11,7 +11,9 @@ const CollectorPage = () => {
   const t = useTranslations("CollectorPage");
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:8765");
+    const socket = new WebSocket(
+      `ws://${process.env.NEXT_PUBLIC_WEB_SOCKET_URL}:8765`
+    );
 
     socket.onopen = () => {
       console.log("Connected");

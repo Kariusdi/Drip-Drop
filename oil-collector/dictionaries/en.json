@@ -69,7 +69,8 @@
     "title": "Your accumulated credits",
     "point": "Credits",
     "noPoint": "You don't have any accumulated credits",
-    "suggesstion": "You can earn accumulated credits by selecting a reward as credit"
+    "suggesstion": "You can earn accumulated credits by selecting a reward as credit",
+    "error": "No data for this user"
   },
   "Back": {
     "label": "Back"

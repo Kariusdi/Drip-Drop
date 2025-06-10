@@ -8,12 +8,42 @@ import Plant from "@/assets/plant.png";
 import Money from "@/assets/money.png";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import realtimeDB from "@/utils/realtimeDB";
+import { ref, onValue, update } from "firebase/database";
 
 const InstructionPage = () => {
   const [selectedMenu, setSelectedMenu] = useState<string>("");
   const [locale, setLocale] = useState<string>("");
   const router = useRouter();
   const t = useTranslations("WelcomePage");
+
+  const [test, setTest] = useState<number | null>(null);
+
+  useEffect(() => {
+    const counterRef = ref(realtimeDB, "oilVal");
+    const unsubscribe = onValue(counterRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        console.log(data);
+        // setBottlesCounter(data.bottles);
+        // if (data.bottles !== 0 && data.bottles !== bottlesCounter) {
+        //   setPointCounterBottle(true);
+        // }
+        // setGlassesCounter(data.glasses);
+        // if (data.glasses !== 0 && data.glasses !== glassesCounter) {
+        //   setPointCounterGlass(true);
+        // }
+        // setTotalCounter(bottlesCounter + glassesCounter * 2);
+      } else {
+        console.log("No data available");
+      }
+      // setTimeout(() => {
+      //   setPointCounterBottle(false);
+      //   setPointCounterGlass(false);
+      // }, 1000);
+    });
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const cookieLocale = document.cookie

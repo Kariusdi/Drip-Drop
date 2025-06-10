@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 const CreditsPage = () => {
   const t = useTranslations("CreditPage");
   const [credits, setCredits] = useState<number | null>(null);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,8 +19,12 @@ const CreditsPage = () => {
         console.error("Error fetching data:", error);
       }
     };
-
-    fetchData();
+    try {
+      fetchData();
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setError(true);
+    }
   }, []);
 
   return (
@@ -47,6 +52,14 @@ const CreditsPage = () => {
                 </div>
               </>
             )}
+          </section>
+        </>
+      )}
+      {error && (
+        <>
+          <AppBackArrow />
+          <section className="flex flex-col items-center justify-center h-full w-full space-y-10 p-10">
+            <h1 className="text-h1 font-bold text-tertiary">{t("error")}</h1>
           </section>
         </>
       )}
