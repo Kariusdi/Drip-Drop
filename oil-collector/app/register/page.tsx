@@ -4,6 +4,8 @@ import { validatePhone } from "@/utils/phone";
 import { useRouter, useSearchParams } from "next/navigation";
 import AppBackArrow from "../_components/AppBackArrow";
 import { useTranslations } from "next-intl";
+import realtimeDB from "@/utils/realtimeDB";
+import { ref, set, update } from "firebase/database";
 
 const RegisterPage = () => {
   const [phone, setPhone] = useState<string>("");
@@ -43,7 +45,11 @@ const RegisterPage = () => {
               .catch(() => {
                 localStorage.setItem("userCredits", "0");
               });
-
+            const controlRef = ref(realtimeDB, "control");
+            await update(controlRef, {
+              start: 1,
+              inspect: 0,
+            });
             router.push("/collector");
           } else if (fromPage === "sales") {
             router.push("/sales");

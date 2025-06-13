@@ -13,6 +13,8 @@ import Plant from "@/assets/plant.png";
 import Money from "@/assets/money.png";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import realtimeDB from "@/utils/realtimeDB";
+import { ref, set } from "firebase/database";
 
 const oilPrice = 10;
 
@@ -151,6 +153,10 @@ const SummaryPage = () => {
       }
     }
 
+    const oilValRef = ref(realtimeDB, "oilVal");
+    await set(oilValRef, 0);
+    const approvedRef = ref(realtimeDB, "approved");
+    await set(approvedRef, 2);
     router.push(`/done?status=approved&reward=${selectedReward}`);
   }, [selectedReward, points, userCredits, router, cash, oilVal]);
 

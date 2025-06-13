@@ -9,7 +9,7 @@ import Money from "@/assets/money.png";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import realtimeDB from "@/utils/realtimeDB";
-import { ref, onValue, update } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 
 const InstructionPage = () => {
   const [selectedMenu, setSelectedMenu] = useState<string>("");
@@ -17,32 +17,21 @@ const InstructionPage = () => {
   const router = useRouter();
   const t = useTranslations("WelcomePage");
 
-  const [test, setTest] = useState<number | null>(null);
+  const [oilTotal, setOilTotal] = useState<number>(0);
 
   useEffect(() => {
-    const counterRef = ref(realtimeDB, "oilVal");
-    const unsubscribe = onValue(counterRef, (snapshot) => {
+    const oilTotalRef = ref(realtimeDB, "oilTotal");
+    const unsubscribe = onValue(oilTotalRef, (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.val();
-        console.log(data);
-        // setBottlesCounter(data.bottles);
-        // if (data.bottles !== 0 && data.bottles !== bottlesCounter) {
-        //   setPointCounterBottle(true);
-        // }
-        // setGlassesCounter(data.glasses);
-        // if (data.glasses !== 0 && data.glasses !== glassesCounter) {
-        //   setPointCounterGlass(true);
-        // }
-        // setTotalCounter(bottlesCounter + glassesCounter * 2);
+        setOilTotal(data);
       } else {
         console.log("No data available");
       }
-      // setTimeout(() => {
-      //   setPointCounterBottle(false);
-      //   setPointCounterGlass(false);
-      // }, 1000);
     });
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   useEffect(() => {
@@ -91,7 +80,8 @@ const InstructionPage = () => {
 
   return (
     <>
-      {locale !== "" && (
+      {oilTotal >= 90 && <p>The tank is full, not available now.</p>}
+      {locale !== "" && oilTotal < 90 && (
         <section className="relative flex flex-col justify-center items-center w-full h-full space-y-20">
           <div className="space-y-5 flex flex-col justify-center items-center">
             <h3 className="text-h3 text-secondary">{t("title")}</h3>

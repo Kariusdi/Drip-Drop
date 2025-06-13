@@ -39,13 +39,13 @@
     "title": "Summary",
     "row1": "Oil quality",
     "row2": "Volume of oil",
-    "row3": "Price per liter",
+    "row3": "Price per ml.",
     "row4": "Total price",
     "row5": "Total credit",
     "approved": "Approved",
     "denied": "Denied",
-    "unit": "THB/liter",
-    "liter": "Litre",
+    "unit": "THB/ml.",
+    "liter": "Ml.",
     "bath": "THB",
     "credit": "Credit",
     "submit": "Submit",
@@ -61,8 +61,8 @@
   },
   "TableComponent": {
     "column1": "Sale Date",
-    "column2": "Quantities (Litre)",
-    "column3": "Price per liter (THB)",
+    "column2": "Quantities (Ml.)",
+    "column3": "Price per ml. (THB)",
     "column4": "Proceeds (THB)"
   },
   "CreditPage": {

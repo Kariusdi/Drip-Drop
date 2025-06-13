@@ -1,9 +1,21 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Arrow from "@/assets/arrow.png";
 import { useTranslations } from "next-intl";
+import realtimeDB from "@/utils/realtimeDB";
+import { ref, onValue, update } from "firebase/database";
+
+function mapToRange(
+  yo: number,
+  inMin: number,
+  inMax: number,
+  outMin = 0,
+  outMax = 100
+) {
+  return ((yo - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+}
 
 const CollectorPage = () => {
   const [oilVal, setOilVal] = useState<number>(0);
@@ -11,28 +23,47 @@ const CollectorPage = () => {
   const t = useTranslations("CollectorPage");
 
   useEffect(() => {
-    const socket = new WebSocket(
-      `ws://${process.env.NEXT_PUBLIC_WEB_SOCKET_URL}:8765`
-    );
-
-    socket.onopen = () => {
-      console.log("Connected");
-    };
-    socket.onclose = () => {
-      console.log("Disconnected");
-    };
-    socket.onmessage = (event) => {
-      // console.log(event.data);
-      setOilVal(event.data);
-    };
-
-    return () => {
-      console.log(`Closing socket connection...`);
-      socket.close();
-    };
+    const oilValRef = ref(realtimeDB, "sensor");
+    const unsubscribe = onValue(oilValRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        setOilVal(mapToRange(data.oilVal, 784, 5000, 0, 100));
+      } else {
+        console.log("No data available");
+      }
+    });
+    return () => unsubscribe();
   }, []);
 
-  const handleFinished = useCallback(() => {
+  // useEffect(() => {
+  //   const socket = new WebSocket(
+  //     `ws://${process.env.NEXT_PUBLIC_WEB_SOCKET_URL}:8765`
+  //   );
+
+  //   socket.onopen = () => {
+  //     console.log("Connected");
+  //   };
+  //   socket.onclose = () => {
+  //     console.log("Disconnected");
+  //   };
+  //   socket.onmessage = (event) => {
+  //     // console.log(event.data);
+  //     setOilVal(event.data);
+  //   };
+
+  //   return () => {
+  //     console.log(`Closing socket connection...`);
+  //     socket.close();
+  //   };
+  // }, []);
+
+  const handleFinished = useCallback(async () => {
+    const controlRef = ref(realtimeDB, "control");
+    await update(controlRef, {
+      start: 0,
+      inspect: 1,
+    });
+    console.log("Set inspect state successfully...");
     router.push("/inspect");
     localStorage.setItem("oilVal", String(oilVal));
   }, [oilVal]);
@@ -93,7 +124,7 @@ const AppWaterWave: React.FC<AppWaterWaveProps> = ({ value }) => {
         className="indicator"
         style={
           {
-            "--height": `${value}%`,
+            "--height": `${mapToRange(value, 784, 5000, 0, 100)}%`,
             "--offset": "0vh",
           } as React.CSSProperties
         }
