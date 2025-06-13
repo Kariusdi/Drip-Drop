@@ -45,11 +45,16 @@ const RegisterPage = () => {
               .catch(() => {
                 localStorage.setItem("userCredits", "0");
               });
-            const controlRef = ref(realtimeDB, "control");
-            await update(controlRef, {
-              start: 1,
-              inspect: 0,
-            });
+            try {
+              const controlRef = ref(realtimeDB, "control");
+              await update(controlRef, {
+                start: 1,
+                inspect: 0,
+              });
+            } catch (error) {
+              console.log(error);
+            }
+
             router.push("/collector");
           } else if (fromPage === "sales") {
             router.push("/sales");

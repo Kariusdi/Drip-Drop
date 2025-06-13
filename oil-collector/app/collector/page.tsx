@@ -35,28 +35,6 @@ const CollectorPage = () => {
     return () => unsubscribe();
   }, []);
 
-  // useEffect(() => {
-  //   const socket = new WebSocket(
-  //     `ws://${process.env.NEXT_PUBLIC_WEB_SOCKET_URL}:8765`
-  //   );
-
-  //   socket.onopen = () => {
-  //     console.log("Connected");
-  //   };
-  //   socket.onclose = () => {
-  //     console.log("Disconnected");
-  //   };
-  //   socket.onmessage = (event) => {
-  //     // console.log(event.data);
-  //     setOilVal(event.data);
-  //   };
-
-  //   return () => {
-  //     console.log(`Closing socket connection...`);
-  //     socket.close();
-  //   };
-  // }, []);
-
   const handleFinished = useCallback(async () => {
     const controlRef = ref(realtimeDB, "control");
     await update(controlRef, {
