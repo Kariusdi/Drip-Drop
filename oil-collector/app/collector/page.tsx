@@ -27,7 +27,12 @@ const CollectorPage = () => {
     const unsubscribe = onValue(oilValRef, (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.val();
-        setOilVal(mapToRange(data.oilVal, 784, 5000, 0, 100));
+        const fixed_data = data.oilVal.toFixed();
+        if (fixed_data <= 79.5) {
+          setOilVal(0);
+        } else {
+          setOilVal(fixed_data / 1000);
+        }
       } else {
         console.log("No data available");
       }
@@ -43,7 +48,7 @@ const CollectorPage = () => {
     });
     console.log("Set inspect state successfully...");
     router.push("/inspect");
-    localStorage.setItem("oilVal", String(oilVal));
+    localStorage.setItem("oilVal", String(oilVal.toFixed(2)));
   }, [oilVal]);
 
   return (
@@ -54,8 +59,8 @@ const CollectorPage = () => {
         </h2>
         <div className="bg-primary rounded-full h-[350px] w-[350px] flex flex-col justify-center items-center text-secondary shadow-2xl space-y-6">
           <div>
-            <p className="text-9xl font-bold drop-shadow-2xl">
-              {oilVal}
+            <p className="text-8xl font-bold drop-shadow-2xl">
+              {oilVal.toFixed(2)}
               <span className="text-h3 font-medium ml-2">{t("unit")}</span>
             </p>
           </div>
@@ -102,7 +107,7 @@ const AppWaterWave: React.FC<AppWaterWaveProps> = ({ value }) => {
         className="indicator"
         style={
           {
-            "--height": `${mapToRange(value, 784, 5000, 0, 100)}%`,
+            "--height": `${value}%`,
             "--offset": "0vh",
           } as React.CSSProperties
         }

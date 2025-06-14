@@ -89,7 +89,7 @@ const SummaryRow = ({
     }`}
   >
     <p>{label}</p>
-    <p className={highlight ? "font-extrabold text-h1" : ""}>{value}</p>
+    <p className={highlight ? "font-extrabold text-h2" : ""}>{value}</p>
   </div>
 );
 
