@@ -74,7 +74,10 @@ const RewardDisplay = ({
         <h1 className="text-h1">🎊</h1>
         <h1 className="text-h2">
           {t("reward")} <br />
-          <span className="text-h1 text-secondary">{amount}</span> {label}
+          <span className="text-h1 text-secondary">
+            {amount.toFixed(2)}
+          </span>{" "}
+          {label}
         </h1>
       </div>
 
