@@ -109,7 +109,7 @@ const AppWaterWave: React.FC<AppWaterWaveProps> = ({ value }) => {
         className="indicator"
         style={
           {
-            "--height": `${value * 10}%`,
+            "--height": `${value * 20}%`,
             "--offset": "0vh",
           } as React.CSSProperties
         }
