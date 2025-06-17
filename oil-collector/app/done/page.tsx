@@ -1,4 +1,6 @@
 "use client";
+import realtimeDB from "@/utils/realtimeDB";
+import { ref, set, update } from "firebase/database";
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -23,7 +25,13 @@ const DonePage = () => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
+    setTimeout(async () => {
+      const approvedRef = ref(realtimeDB, "approved");
+      await set(approvedRef, 2);
+      const sensorRef = ref(realtimeDB, "sensor");
+      await update(sensorRef, {
+        oilVal: 0,
+      });
       localStorage.removeItem("oilVal");
       localStorage.removeItem("cash");
       localStorage.removeItem("userCredits");

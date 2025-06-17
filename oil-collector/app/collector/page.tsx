@@ -31,14 +31,16 @@ const CollectorPage = () => {
         if (fixed_data <= 79.5) {
           setOilVal(0);
         } else {
-          setOilVal(fixed_data / 1000);
+          if (fixed_data / 1000 > oilVal) {
+            setOilVal(fixed_data / 1000);
+          }
         }
       } else {
         console.log("No data available");
       }
     });
     return () => unsubscribe();
-  }, []);
+  }, [oilVal]);
 
   const handleFinished = useCallback(async () => {
     const controlRef = ref(realtimeDB, "control");

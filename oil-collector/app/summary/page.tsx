@@ -89,7 +89,7 @@ const SummaryRow = ({
     }`}
   >
     <p>{label}</p>
-    <p className={highlight ? "font-extrabold text-h2" : ""}>{value}</p>
+    <p className={highlight ? "font-extrabold text-h3" : ""}>{value}</p>
   </div>
 );
 
@@ -155,8 +155,6 @@ const SummaryPage = () => {
 
     const oilValRef = ref(realtimeDB, "oilVal");
     await set(oilValRef, 0);
-    const approvedRef = ref(realtimeDB, "approved");
-    await set(approvedRef, 2);
     router.push(`/done?status=approved&reward=${selectedReward}`);
   }, [selectedReward, points, userCredits, router, cash, oilVal]);
 
@@ -224,12 +222,12 @@ const SummaryPage = () => {
               />
               <SummaryRow
                 label={t("row4")}
-                value={`${cash} ${t("bath")}`}
+                value={`${cash.toFixed(2)} ${t("bath")}`}
                 highlight
               />
               <SummaryRow
                 label={t("row5")}
-                value={`${points} ${t("credit")}`}
+                value={`${points.toFixed(2)} ${t("credit")}`}
                 highlight
               />
             </>

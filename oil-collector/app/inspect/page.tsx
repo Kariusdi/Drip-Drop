@@ -7,7 +7,6 @@ import { ref, onValue, set, update } from "firebase/database";
 
 const InspectPage = () => {
   const router = useRouter();
-  const [isInit, setIsInit] = useState<boolean>(true);
   const t = useTranslations("InspectPage");
 
   useEffect(() => {
@@ -21,16 +20,12 @@ const InspectPage = () => {
     const unsubscribe = onValue(approvedRef, (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.val();
-        if (isInit) {
-          setIsInit(false);
-        } else {
-          if (data === 1) {
-            setInspect();
-            router.push("/summary?status=approved");
-          } else if (data === 0) {
-            setInspect();
-            router.push("/summary?status=denied");
-          }
+        if (data === 1) {
+          setInspect();
+          router.push("/summary?status=approved");
+        } else if (data === 0) {
+          setInspect();
+          router.push("/summary?status=denied");
         }
       } else {
         console.log("No data available");
@@ -39,7 +34,7 @@ const InspectPage = () => {
     return () => {
       unsubscribe();
     };
-  }, [isInit]);
+  }, []);
 
   // useEffect(() => {
   //   setTimeout(() => {
