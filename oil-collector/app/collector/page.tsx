@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Arrow from "@/assets/arrow.png";
+import Arrow from "@/assets/arrow.webp";
 import { useTranslations } from "next-intl";
 import realtimeDB from "@/utils/realtimeDB";
 import { ref, onValue, update } from "firebase/database";

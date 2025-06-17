@@ -1,6 +1,6 @@
 import Image from "next/image";
 import BG from "@/assets/bg.gif";
-import Logo from "@/assets/logo.png";
+import Logo from "@/assets/logo.webp";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 

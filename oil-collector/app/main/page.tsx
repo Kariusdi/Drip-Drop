@@ -1,15 +1,16 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import En from "@/assets/en.png";
-import Th from "@/assets/th.png";
-import Piggy from "@/assets/piggy-bank.png";
-import Plant from "@/assets/plant.png";
-import Money from "@/assets/money.png";
+import En from "@/assets/en.webp";
+import Th from "@/assets/th.webp";
+import Piggy from "@/assets/piggy-bank.webp";
+import Plant from "@/assets/plant.webp";
+import Money from "@/assets/money.webp";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import realtimeDB from "@/utils/realtimeDB";
 import { ref, onValue } from "firebase/database";
+import Logo from "@/assets/logo.webp";
 
 const InstructionPage = () => {
   const [selectedMenu, setSelectedMenu] = useState<string>("");
@@ -84,7 +85,16 @@ const InstructionPage = () => {
       {locale !== "" && oilTotal < 90 && (
         <section className="relative flex flex-col justify-center items-center w-full h-full space-y-20">
           <div className="space-y-5 flex flex-col justify-center items-center">
-            <h3 className="text-h3 text-secondary">{t("title")}</h3>
+            {/* <h3 className="text-h3 text-secondary">{t("title")}</h3> */}
+            <Image
+              src={Logo}
+              alt="logo"
+              width={200}
+              height={200}
+              quality={100}
+              className="-mb-8"
+              priority
+            />
             <h2 className="text-h2 text-secondary font-medium">
               {t("greeting")}
             </h2>

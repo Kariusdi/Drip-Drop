@@ -1,7 +1,7 @@
 "use client";
 import { FC } from "react";
 import Image from "next/image";
-import Arrow from "@/assets/arrow.png";
+import Arrow from "@/assets/arrow.webp";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 

@@ -7,10 +7,10 @@ import React, {
   useState,
 } from "react";
 import Image from "next/image";
-import Approved from "@/assets/approved.png";
-import Denied from "@/assets/denied.png";
-import Plant from "@/assets/plant.png";
-import Money from "@/assets/money.png";
+import Approved from "@/assets/approved.webp";
+import Denied from "@/assets/denied.webp";
+import Plant from "@/assets/plant.webp";
+import Money from "@/assets/money.webp";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import realtimeDB from "@/utils/realtimeDB";
