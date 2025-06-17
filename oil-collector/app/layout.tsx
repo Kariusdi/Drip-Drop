@@ -11,8 +11,8 @@ const kanit = Kanit({
 });
 
 export const metadata: Metadata = {
-  title: "Oil Collector",
-  description: "For oil collector prototype only",
+  title: "Drip Drop",
+  description: "For Drip Drop prototype only",
 };
 
 export default async function RootLayout({

@@ -11,7 +11,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
   app:
-    build: .
+    image: kariusdi/dripdrap
     ports:
       - "3000:3000"
     depends_on:
