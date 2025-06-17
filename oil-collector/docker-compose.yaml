@@ -12,7 +12,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
   app:
-    image: dripdrop
+    image: dripdrop:final
     ports:
       - "3000:3000"
     depends_on:
