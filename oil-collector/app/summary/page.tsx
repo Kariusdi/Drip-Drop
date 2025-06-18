@@ -128,7 +128,7 @@ const SummaryPage = () => {
           method: "PUT",
           body: JSON.stringify({
             phone,
-            credits: (points + userCredits).toFixed(1),
+            credits: (points + userCredits).toFixed(2),
           }),
         }).then(() => {
           localStorage.setItem("userCredits", String(points));
@@ -144,10 +144,10 @@ const SummaryPage = () => {
             phone,
             oilVol: oilVal,
             pricePerLiter: oilPrice,
-            cash: cash.toFixed(1),
+            cash: cash.toFixed(2),
           }),
         });
-        localStorage.setItem("cash", cash.toFixed(1));
+        localStorage.setItem("cash", cash.toFixed(2));
       } catch (error) {
         console.error(error);
       }
