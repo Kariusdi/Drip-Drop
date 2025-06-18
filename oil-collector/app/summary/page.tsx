@@ -16,7 +16,7 @@ import { useTranslations } from "next-intl";
 import realtimeDB from "@/utils/realtimeDB";
 import { ref, set } from "firebase/database";
 
-const oilPrice = 10;
+const oilPrice = 20;
 
 // ✅ Component: RewardOptionSelector
 const RewardOptionSelector = ({
